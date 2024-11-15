@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phân loại động vật</title>
+</head>
+
+<body>
+    <h1>Phân loại động vật</h1>
+
+    <!-- Form để upload hình ảnh -->
+    <form id="imageForm">
+        <input type="file" id="imageInput" accept="image/*" />
+        <button type="button" id="submitButton">Gửi hình ảnh</button>
+    </form>
+
+    <!-- Hiển thị hình ảnh đã chọn -->
+    <div id="imagePreview" style="display: none;">
+        <h3>Hình ảnh đã chọn:</h3>
+        <img id="selectedImage" src="" alt="Hình ảnh đã chọn" width="200" />
+    </div>
+
+    <!-- Hiển thị trạng thái loading -->
+    <div id="loading" style="display: none;">
+        <p>Đang xử lý, vui lòng đợi...</p>
+    </div>
+
+    <script>
+        // Xử lý khi người dùng chọn ảnh và gửi yêu cầu
+        document.getElementById('imageInput').addEventListener('change', function(event) {
+            const imageInput = document.getElementById('imageInput');
+            const file = imageInput.files[0];
+
+            if (file) {
+                // Hiển thị hình ảnh đã chọn
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('selectedImage').src = e.target.result;
+                    document.getElementById('imagePreview').style.display = 'block'; // Hiển thị phần hình ảnh
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('submitButton').addEventListener('click', async function (event) {
+            // Ngừng hành động mặc định của form
+            event.preventDefault();
+
+            const imageInput = document.getElementById('imageInput');
+            const file = imageInput.files[0];
+            if (!file) {
+                alert("Vui lòng chọn một hình ảnh!");
+                return;
+            }
+
+            // Kiểm tra xem có đang loading không, nếu có thì không làm gì
+            if (document.getElementById('loading').style.display === 'block') {
+                return; // Không gửi yêu cầu nếu đang trong trạng thái loading
+            }
+
+            // Ẩn kết quả cũ và hiển thị trạng thái loading khi bắt đầu gửi yêu cầu
+            document.getElementById('loading').style.display = 'block';  // Hiển thị trạng thái loading
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            try {
+                // Gửi yêu cầu POST đến API Flask
+                const response = await fetch("http://127.0.0.1:5000/predict", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error("Error response:", errorData);  // In ra chi tiết lỗi
+                    throw new Error("Không thể nhận kết quả từ API!");
+                }
+
+                // Nhận kết quả từ API
+                const data = await response.json();
+                
+                // Hiển thị kết quả bằng alert
+                alert(`Lớp dự đoán: ${data.predicted_class}\nĐộ tin cậy: ${data.confidence.toFixed(2)}%`);
+
+                // Ẩn trạng thái loading
+                document.getElementById('loading').style.display = 'none';
+            } catch (error) {
+                console.error('Lỗi khi gửi yêu cầu:', error);
+                alert("Đã có lỗi xảy ra khi gửi yêu cầu.");
+                document.getElementById('loading').style.display = 'none';  // Ẩn trạng thái loading nếu có lỗi
+            }
+        });
+    </script>
+</body>
+
+</html>
