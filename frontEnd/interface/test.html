@@ -1,0 +1,68 @@
+<!-- ------------------------------------------------------------------ -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhận diện động vật</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/test.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <img src="/frontEnd/image/logo.png" alt="Logo">
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="./mainPage.html">Trang chủ</a></li>
+                <li><a href="./about.html">Giới thiệu</a></li>
+                <li><a href="./contact.html">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <!-- Cột bên trái: Khu vực tải ảnh -->
+        <section class="left-panel">
+            <h1 class="main-title">Tải lên hình ảnh</h1>
+            <p class="description">Chọn một hình ảnh để phân loại.</p>
+            
+            <form id="imageForm" class="upload-form">
+                <label for="imageInput" class="file-label">Chọn hình ảnh</label>
+                <input type="file" id="imageInput" class="file-input" accept="image/*">
+                <button type="button" id="submitButton" class="submit-button">Phân loại</button>
+            </form>
+
+            <div id="imagePreview" class="preview" style="display: none;">
+                <h3>Hình ảnh đã chọn:</h3>
+                <img id="selectedImage" src="" alt="Hình ảnh đã chọn">
+            </div>
+        </section>
+
+        <!-- Cột bên phải: Hiển thị kết quả -->
+        <section class="right-panel">
+            <h1 class="main-title">Kết quả phân loại</h1>
+            <div id="loading" class="loading" style="display: none;">
+                <p>Đang xử lý...</p>
+            </div>
+
+            <div id="animalInfo" class="animal-info" style="display: none;">
+                <h3>Thông tin chi tiết:</h3>
+                <p><strong>Tên (Tiếng Anh):</strong> <span id="animalNameEng"></span></p>
+                <p><strong>Tên (Tiếng Việt):</strong> <span id="animalNameVie"></span></p>
+                <p><strong>Mô tả:</strong> <span id="animalDescription"></span></p>
+                <p><strong>Độ tin cậy:</strong> <span id="animalConfidence"></span>%</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 Hệ thống phân loại động vật. Mọi quyền được bảo lưu.</p>
+    </footer>
+
+    <script src="../js/upload.js"></script>
+</body>
+
+</html>

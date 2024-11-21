@@ -1,23 +1,23 @@
-  // Xử lý khi người dùng chọn ảnh và gửi yêu cầu
-  document.getElementById('imageInput').addEventListener('change', function (event) {
-    const imageInput = document.getElementById('imageInput');
+// Xử lý khi người dùng chọn ảnh và gửi yêu cầu
+document.getElementById('file-upload').addEventListener('change', function (event) {
+    const imageInput = document.getElementById('file-upload');
     const file = imageInput.files[0];
 
     if (file) {
         // Hiển thị hình ảnh đã chọn
         const reader = new FileReader();
         reader.onload = function (e) {
-            document.getElementById('selectedImage').src = e.target.result;
-            document.getElementById('imagePreview').style.display = 'block'; // Hiển thị phần hình ảnh
+            document.getElementById('preview-image').src = e.target.result;
+            document.getElementById('uploaded-image').style.display = 'block'; // Hiển thị phần hình ảnh
         };
         reader.readAsDataURL(file);
     }
 });
 
-document.getElementById('submitButton').addEventListener('click', async function (event) {
+document.getElementById('classify-button').addEventListener('click', async function (event) {
     event.preventDefault();
 
-    const imageInput = document.getElementById('imageInput');
+    const imageInput = document.getElementById('file-upload');
     const file = imageInput.files[0];
     if (!file) {
         alert("Vui lòng chọn một hình ảnh!");
@@ -68,5 +68,4 @@ document.getElementById('submitButton').addEventListener('click', async function
         alert("Đã có lỗi xảy ra khi gửi yêu cầu.");
         document.getElementById('loading').style.display = 'none';  // Ẩn trạng thái loading nếu có lỗi
     }
-
 });
