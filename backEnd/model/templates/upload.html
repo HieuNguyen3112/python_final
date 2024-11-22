@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="./img/logo.png">
-    <link type="text/css" rel="stylesheet" href="/frontEnd/css/mainPage.css">
-    <link type="text/css" rel="stylesheet" href="/frontEnd/css/style.css">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/mainPage.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <!-- Navbar -->
@@ -17,7 +17,7 @@
         <ul>
             <li><a id="page_about" href="./">About</a></li>
             <li>|</li>
-            <li><a id="page_home" href="/frontEnd/interface/mainPage.html">Home</a></li>
+            <li><a id="page_home"  href="{{ url_for('index') }}">Home</a></li>
             <li>|</li>
             <li><a id="page_contact" href="./">Contact</a></li>
         </ul>
@@ -61,7 +61,7 @@
                     Chọn hình ảnh
                     <input type="file" id="file-upload" class="file-input" accept="image/*" style="display: none;">
                 </label>
-                <button class="submit-button" id="classify-button" disabled>Phân loại</button>
+                <button class="submit-button" id="classify-button">Phân loại</button>
             </div>
             
 
@@ -88,32 +88,22 @@
         </div>
     </div>
 
-    <!-- About -->
-    <div id="about" class="page" style="display: none;">
-        <img id="about-people" src="./img/about-people.png"></img>
-        <img id="about-people-2" src="./img/VA-MD-seal-color-print.png"></img>
-        <img id="about-people-3" src="./img/aries-icon.png"></img>
-        <div id="about-box">
-            <div class="bordered-title">About Our Team</div>
-            <div class="bordered-text">The Veterinary Anatomy Viewer is a VR anatomy learning experience for canine, equine, and bovine models. It has been developed by the ARIES Team at the Virginia Tech Library, led by Dr. Todd Ogle. Contributions have been made by Lucas Freeman, Zac Kim, Karina Springer, Sam Lally, Nayha Pochiraju, Nicole Muller, Diana Ofori - Manu, and Sam Williams.</div>
-        </div>
-        <img id="about-artwork" src="./img/home_decorations.svg"></img>
-    </div>
 
     <div id="vr_button_frame"></div>
 		<div id="log" style="position:absolute;top:0;left:0;color:white;height:100%;width: 100%;pointer-events: none;"></div>
 	
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 1">
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 2">
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 3">
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 4">
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 5">
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 6">
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 7">
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 8">
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 9">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 1">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 2">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 3">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 4">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 5">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 6">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 7">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 8">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 9">
+
 
     <!-- JavaScript -->
-    <script src="../js/upload.js"></script>
+    <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
 </body>
 </html>

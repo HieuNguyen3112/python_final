@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="icon" type="image/x-icon" href="./img/logo.png">
 		<link rel="icon" type="image/x-icon" href="./img/logo-2.png">
-		<link type="text/css" rel="stylesheet" href="/frontEnd/css/mainPage.css">
+		<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/mainPage.css') }}">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	</head>
 	<body>
@@ -18,7 +18,7 @@
 			<ul>
 				<li><a id="page_about" href="./">About</a></li>
 				<li>|</li>
-				<li><a id="page_home"  href="/frontEnd/interface/mainPage.html">Home</a></li>
+				<li><a id="page_home"  href="{{ url_for('index') }}">Home</a></li>
 				<li>|</li>
 				<li><a id="page_contact"  href="./">Contact</a></li>
 			</ul>
@@ -93,18 +93,18 @@
 		<div id="home" class="page">
 			<div id="home-title">
 				<h4>Lập trình python</h4>
-				<img id="home-artwork-occ" src="/frontEnd/image/home_deco_occ.svg" alt="Trang trí trang chủ"></img>
+				<img id="home-artwork-occ" src="{{ url_for('static', filename='images/home_deco_occ.svg') }}" alt="Trang trí trang chủ">
 				<br/>
 				<h2>Hệ thống phân loại động vật</h2>
 				<br/>
 				<h6>Dựa trên mạng Nơ-ron tích chập</h6>
 			</div>
-			<img id="home-artwork" src="/frontEnd/image/home_decorations.svg" alt="Trang trí trang chủ"></img>		
+			<img id="home-artwork" src="{{ url_for('static', filename='images/home_decorations.svg') }}" alt="Trang trí trang chủ">		
 		</div>
 
 		<!-- center button -->
 		<div class="center-button-wrapper">
-			<a href="/frontEnd/interface/upload.html" class="start-button">Start</a>
+			<a href="{{ url_for('upload') }}" class="start-button">Start</a>
 		</div>
 
 		<div id="modal">
@@ -145,14 +145,14 @@
 		<div id="vr_button_frame"></div>
 		<div id="log" style="position:absolute;top:0;left:0;color:white;height:100%;width: 100%;pointer-events: none;"></div>
 	
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 1">
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 2">
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 3">
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 4">
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 5">
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 6">
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 7">
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 8">
-		<img class="bg-paw" src="/frontEnd/image/bg_paw.png" alt="Paw background 9">
+		<img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 1">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 2">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 3">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 4">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 5">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 6">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 7">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 8">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 9">
 	</body>
 </html>
