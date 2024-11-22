@@ -11,6 +11,7 @@ document.getElementById('file-upload').addEventListener('change', function (even
             document.getElementById('uploaded-image').style.display = 'block'; // Hiển thị phần hình ảnh
         };
         reader.readAsDataURL(file);
+        document.getElementById('classify-button').disabled = false; // Kích hoạt nút phân loại
     }
 });
 
@@ -49,23 +50,19 @@ document.getElementById('classify-button').addEventListener('click', async funct
 
         const data = await response.json();
 
-        // Log dữ liệu trả về
-        console.log("API Response:", data);
-
         // Hiển thị kết quả trong giao diện
         document.getElementById('animalNameEng').textContent = data.animal_info?.Name_Eng || "Không rõ";
         document.getElementById('animalNameVie').textContent = data.animal_info?.Name_Vie || "Không rõ";
         document.getElementById('animalDescription').textContent = data.animal_info?.mo_ta || "Không có thông tin chi tiết.";
-        document.getElementById('animalConfidence').textContent = data.confidence?.toFixed(2) || "0.00";
+        document.getElementById('animalConfidence').textContent = `${(data.confidence * 100).toFixed(2)}%` || "0.00%";
 
         // Hiển thị phần thông tin chi tiết
         document.getElementById('animalInfo').style.display = 'block';
-
-        // Ẩn trạng thái loading
-        document.getElementById('loading').style.display = 'none';
     } catch (error) {
         console.error('Lỗi khi gửi yêu cầu:', error);
         alert("Đã có lỗi xảy ra khi gửi yêu cầu.");
-        document.getElementById('loading').style.display = 'none';  // Ẩn trạng thái loading nếu có lỗi
+    } finally {
+        // Ẩn trạng thái loading
+        document.getElementById('loading').style.display = 'none';
     }
 });
