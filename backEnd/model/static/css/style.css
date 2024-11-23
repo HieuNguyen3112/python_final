@@ -45,7 +45,7 @@
     color: #ecf0f1;
     font-size: 1.1rem;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
 }
 
 .button-row {
@@ -99,12 +99,17 @@
 }
 
 .image-preview img {
-    max-width: 100%; /* Đảm bảo hình ảnh không vượt quá chiều rộng của cột */
-    height: auto; /* Tự động điều chỉnh chiều cao theo tỉ lệ */
-    border-radius: 8px;
-    margin-top: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 300px; /* Đặt chiều rộng tối đa */
+    max-height: 300px; /* Đặt chiều cao tối đa */
+    width: auto; /* Giữ tỉ lệ khung hình khi co dãn */
+    height: auto; /* Giữ tỉ lệ khung hình khi co dãn */
+    object-fit: contain; /* Đảm bảo ảnh nằm gọn trong khung */
+    border: 1px solid #ddd; /* Viền cho hình ảnh */
+    border-radius: 5px; /* Bo góc nhẹ */
+    padding: 5px;
+    justify-content: center;
 }
+
 
 #uploaded-image {
     display: flex;

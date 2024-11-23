@@ -16,7 +16,8 @@ def get_animal_by_class_id(class_id):
             return {
                 "Name_Eng": animal.get("Name_Eng", "Unknown"),
                 "Name_Vie": animal.get("Name_Vie", "Không rõ"),
-                "mo_ta": animal.get("mo_ta", "Không có thông tin chi tiết")
+                "mo_ta": animal.get("mo_ta", "Không có thông tin chi tiết"),
+                "sound_url": animal.get("sound_url", "Không có tiếng kêu ") 
             }
         return None
     except Exception as e:

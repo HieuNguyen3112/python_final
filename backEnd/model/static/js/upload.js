@@ -73,7 +73,42 @@ document.getElementById('classify-button').addEventListener('click', async funct
         document.getElementById('animalNameVie').textContent = data.animal_info?.Name_Vie || "Không rõ";
         document.getElementById('animalDescription').textContent = data.animal_info?.mo_ta || "Không có thông tin chi tiết.";
         document.getElementById('animalConfidence').textContent = `${(data.confidence).toFixed(2)}` || "0.00%";
-
+        const soundUrl = data.animal_info?.sound_url;
+        if (soundUrl) {
+            const audioElement = document.getElementById('animalSound');
+            const audioSource = document.getElementById('animalSoundSource');
+            audioSource.src = soundUrl; // Gán URL âm thanh
+            audioElement.load(); // Tải lại âm thanh
+        
+            // Hiển thị biểu tượng loa
+            const soundIcon = document.getElementById('animalSoundIcon');
+            const soundIconImage = document.getElementById('soundIconImage');
+            soundIcon.style.display = 'block';
+        
+            // Trạng thái âm thanh
+            let isPlaying = false;
+        
+            // Khi nhấp vào biểu tượng loa, bật/tắt âm thanh
+            soundIcon.addEventListener('click', () => {
+                if (isPlaying) {
+                    audioElement.pause(); // Tạm dừng âm thanh
+                    soundIconImage.src = "https://res.cloudinary.com/dwfmpiozq/image/upload/v1732350144/loa_off_wvkrht.png";
+                } else {
+                    audioElement.play(); // Phát âm thanh
+                    soundIconImage.src = "https://res.cloudinary.com/dwfmpiozq/image/upload/v1732350142/loa_on_kvhq38.png";
+                }
+                isPlaying = !isPlaying; // Cập nhật trạng thái
+            });
+        
+            // Khi âm thanh kết thúc, tự động chuyển biểu tượng về trạng thái tắt
+            audioElement.addEventListener('ended', () => {
+                soundIconImage.src = "https://res.cloudinary.com/dwfmpiozq/image/upload/v1732350144/loa_off_wvkrht.png";
+                isPlaying = false;
+            });
+        } else {
+            document.getElementById('animalSoundIcon').style.display = 'none'; // Ẩn biểu tượng loa nếu không có âm thanh
+        }
+        
         document.getElementById('animalInfo').style.display = 'block';
     } catch (error) {
         console.error('Lỗi khi gửi yêu cầu:', error.message);
