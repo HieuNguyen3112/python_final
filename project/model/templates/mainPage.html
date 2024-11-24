@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<base href="./">
+		<title>Nhận diện động vật</title>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" type="image/x-icon" href="./img/logo.png">
+		<link rel="icon" type="image/x-icon" href="./img/logo-2.png">
+		<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/mainPage.css') }}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<!-- navbar -->
+		<div id="header">
+			<div id="logo"></div>
+			<div id="logo-2"></div>
+			<ul>
+				<li><a id="page_about" href="./">About</a></li>
+				<li>|</li>
+				<li><a id="page_home"  href="{{ url_for('index') }}">Home</a></li>
+				<li>|</li>
+				<li><a id="page_contact"  href="./">Contact</a></li>
+			</ul>
+		</div>
+
+		<!-- loading frame -->
+		<div id="loading-frame">
+			<span id="loading-text">Initializing</span>
+			<div id="loading-bar-frame">
+				<div id="loading-bar"></div>
+			</div>
+		</div>
+
+	
+		<div id="home" class="page">
+			<div id="home-title">
+				<h4>Lập trình python</h4>
+				<img id="home-artwork-occ" src="{{ url_for('static', filename='images/home_deco_occ.svg') }}" alt="Trang trí trang chủ">
+				<br/>
+				<h2>Hệ thống phân loại động vật</h2>
+				<br/>
+				<h6>Dựa trên mạng Nơ-ron tích chập</h6>
+			</div>
+			<img id="home-artwork" src="{{ url_for('static', filename='images/home_decorations.svg') }}" alt="Trang trí trang chủ">		
+		</div>
+
+		<!-- center button -->
+		<div class="center-button-wrapper">
+			<a href="{{ url_for('upload') }}" class="start-button">Start</a>
+		</div>
+
+		<div id="modal">
+			
+			<div id="model-select">
+				
+			</div>
+		</div>
+
+		<!-- about modal category -->
+		<div id="about" class="page" style="display: none;">
+			<img id="about-people" src="./img/about-people.png"></img>
+			<img id="about-people-2" src="./img/VA-MD-seal-color-print.png"></img>
+			<img id="about-people-3" src="./img/aries-icon.png"></img>
+			<div id="about-box">
+				<div class="bordered-title">About Our Team</div>
+				<div class="bordered-text">The Veterinary Anatomy Viewer is a VR anatomy learning experience for canine, equine, and bovine models. It has been developed by the ARIES Team at the Virginia Tech Library, led by Dr. Todd Ogle. Contributions have been made by Lucas Freeman, Zac Kim, Karina Springer, Sam Lally, Nayha Pochiraju, Nicole Muller, Diana Ofori - Manu, and Sam Williams.</div>
+			</div>
+			<img id="about-artwork" src="./img/home_decorations.svg"></img>
+		</div>
+
+		<!-- contact modal category -->
+		<div id="contact" class="page" style="display: none;">
+			<img id="contact-artwork" src="./img/contact-img-2.png"></img>
+			<div id="contact-box">
+				<div class="bordered-title">For more information about this project, contact Principal Investigator Dr. Michael Nappier, DVM, MAEd, DABVP.</div>
+				<div class="bordered-text">
+					<form id="contact-form">
+						<input type="text" style="float:left" placeholder="Name"></input>
+						<input type="text" style="float:right" placeholder="Email"></input>
+						<textarea placeholder="Enter your message"></textarea>
+						<button type="button">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div id="vr_button_frame"></div>
+		<div id="log" style="position:absolute;top:0;left:0;color:white;height:100%;width: 100%;pointer-events: none;"></div>
+	
+		<img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 1">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 2">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 3">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 4">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 5">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 6">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 7">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 8">
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 9">
+	</body>
+</html>

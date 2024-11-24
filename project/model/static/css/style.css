@@ -1,0 +1,148 @@
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 80px auto;
+    max-width: 1200px;
+    gap: 20px;
+    padding: 0 20px;
+    background: none;
+}
+
+.left-panel, .right-panel {
+    flex: 1;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    min-height: 400px; /* Chiều cao tối thiểu cho cả hai cột */
+}
+
+.left-panel {
+    margin-right: 15px;
+}
+
+.right-panel {
+    margin-left: 15px;
+}
+
+.main-title {
+    font-size: 1.8rem;
+    color: rgb(100 149 237);
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.description, .animal-info p {
+    color: #ecf0f1;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.button-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.file-label, .submit-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    width: 150px; /* Đặt kích thước cố định để hai nút đồng đều */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.file-label {
+    background: #2980b9;
+    color: #fff;
+}
+
+.file-label:hover {
+    background: #3498db;
+}
+
+.submit-button {
+    background: #d5a328cc;
+    color: #fff;    
+    border: none;
+}
+
+.submit-button:hover {
+    background: #c6c327;
+}
+
+.animal-info {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    color: #ecf0f1;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    margin-top: 20px;
+}
+
+.image-preview img {
+    max-width: 100%; /* Đảm bảo hình ảnh không vượt quá chiều rộng của cột */
+    height: auto; /* Tự động điều chỉnh chiều cao theo tỉ lệ */
+    border-radius: 8px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#uploaded-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#uploaded-image p {
+    margin-bottom: 10px;
+    color: #ecf0f1;
+    font-size: 1rem;
+}
+
+html, body {
+    height: 100%; /* Đảm bảo chiều cao của HTML và body */
+    margin: 0; /* Loại bỏ khoảng cách mặc định */
+    overflow-y: auto; /* Bật thanh cuộn dọc */
+    scroll-behavior: smooth; /* Làm mượt khi cuộn */
+}
+
+.main-content {
+    margin: 80px auto;
+    max-width: 1200px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Đảm bảo cột không tràn khi màn hình nhỏ */
+    gap: 20px;
+}
+
+.left-panel, .right-panel {
+    flex: 1;
+    min-height: 400px; /* Chiều cao tối thiểu */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    overflow-y: auto; /* Bật cuộn bên trong cột nếu nội dung quá lớn */
+}
