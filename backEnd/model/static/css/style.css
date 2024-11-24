@@ -99,8 +99,8 @@
 }
 
 .image-preview img {
-    max-width: 300px; /* Đặt chiều rộng tối đa */
-    max-height: 300px; /* Đặt chiều cao tối đa */
+    max-width: 500px; /* Đặt chiều rộng tối đa */
+    max-height: 500px; /* Đặt chiều cao tối đa */
     width: auto; /* Giữ tỉ lệ khung hình khi co dãn */
     height: auto; /* Giữ tỉ lệ khung hình khi co dãn */
     object-fit: contain; /* Đảm bảo ảnh nằm gọn trong khung */

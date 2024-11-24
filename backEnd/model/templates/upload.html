@@ -33,25 +33,6 @@
         </div>
     </div>
 
-    <!-- Sidebar -->
-    <div id="sidebar">
-        <div id="toolbar">
-            <div id="bone-info">
-                <h6 id="selected-info">Browsing</h6>
-                <h6 id="selected"><b>No Bone Selected</b></h6>
-            </div>
-            <div style="width:100%;direction: rtl;">
-                <button id="focus-toggle" class="sidebar-button half-width">Focus</button>
-                <button id="hide-toggle" class="sidebar-button half-width">Hide</button>
-            </div>
-            <div style="width:100%;direction: rtl;">
-                <button id="deselect" class="sidebar-button half-width">Deselect</button>
-                <button id="show-all" class="sidebar-button half-width">Show All</button>
-            </div>
-            <a href="./" class="sidebar-button" id="new-model-link">Reselect Model</a>
-        </div>
-    </div>
-
     <!-- Main Content -->
     <div class="main-content">
         <!-- Form Upload -->
@@ -65,7 +46,6 @@
                 </label>
                 <button class="submit-button" id="classify-button">Phân loại</button>
             </div>
-
 
             <!-- Hiển thị ảnh đã tải lên -->
             <div id="uploaded-image" class="image-preview" style="display: none;">
@@ -84,41 +64,33 @@
                 <h3 class="info-title">Thông tin chi tiết:</h3>
                 <p><strong>Tên (Tiếng Anh):</strong> <span id="animalNameEng"></span></p>
                 <p><strong>Tên (Tiếng Việt):</strong> <span id="animalNameVie"></span></p>
-                <p class="sound-info">
-                    <strong>Tiếng kêu:</strong>
-                    <div id="animalSoundIcon" class="sound-icon">
+                <div class="sound-info">
+                    <p><strong>Tiếng kêu:</strong></p>
+                    <div id="animalSoundIcon" class="sound-icon" style="display: none;">
                         <img id="soundIconImage" 
                              src="https://res.cloudinary.com/dwfmpiozq/image/upload/v1732350144/loa_off_wvkrht.png" 
                              alt="Sound Control" 
                              width="30px">
                     </div>
-                </p>
+                    <div id="animalSoundPlaceholder" style="font-style: italic; color: gray; display: none;">
+                        Không có tiếng kêu của động vật này.
+                    </div>
+                </div>
                 <audio id="animalSound" style="display: none;">
                     <source id="animalSoundSource" src="" type="audio/mpeg">
                 </audio>
                 <p><strong>Mô tả:</strong> <span id="animalDescription"></span></p>
                 <p><strong>Độ tin cậy:</strong> <span id="animalConfidence"></span>%</p>
             </div>
-            
-
         </div>
     </div>
 
-
-    <div id="vr_button_frame"></div>
-    <div id="log" style="position:absolute;top:0;left:0;color:white;height:100%;width: 100%;pointer-events: none;">
+    <!-- Background Images -->
+    <div class="background-images">
+        {% for i in range(1, 10) %}
+        <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background {{ i }}">
+        {% endfor %}
     </div>
-
-    <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 1">
-    <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 2">
-    <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 3">
-    <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 4">
-    <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 5">
-    <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 6">
-    <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 7">
-    <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 8">
-    <img class="bg-paw" src="{{ url_for('static', filename='images/bg_paw.png') }}" alt="Paw background 9">
-
 
     <!-- JavaScript -->
     <script src="{{ url_for('static', filename='js/upload.js') }}"></script>

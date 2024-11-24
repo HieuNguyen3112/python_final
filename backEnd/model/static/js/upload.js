@@ -48,6 +48,20 @@ document.getElementById('classify-button').addEventListener('click', async funct
     // Hiển thị trạng thái loading
     document.getElementById('loading').style.display = 'block';
 
+    // Reset trạng thái loa và âm thanh
+    const soundIcon = document.getElementById('animalSoundIcon');
+    const soundIconImage = document.getElementById('soundIconImage');
+    const audioElement = document.getElementById('animalSound');
+    const audioSource = document.getElementById('animalSoundSource');
+    const soundPlaceholder = document.getElementById('animalSoundPlaceholder');
+
+    soundIcon.style.display = 'none'; // Ẩn biểu tượng loa
+    soundPlaceholder.style.display = 'none'; // Ẩn thông báo placeholder
+    soundIconImage.src = "https://res.cloudinary.com/dwfmpiozq/image/upload/v1732350144/loa_off_wvkrht.png"; // Đặt lại biểu tượng loa tắt
+    audioElement.pause(); // Tắt âm thanh nếu đang phát
+    audioElement.currentTime = 0; // Đặt lại âm thanh về thời điểm bắt đầu
+    audioSource.src = ""; // Xóa URL âm thanh
+
     const formData = new FormData();
     formData.append("file", file);
 
@@ -73,42 +87,37 @@ document.getElementById('classify-button').addEventListener('click', async funct
         document.getElementById('animalNameVie').textContent = data.animal_info?.Name_Vie || "Không rõ";
         document.getElementById('animalDescription').textContent = data.animal_info?.mo_ta || "Không có thông tin chi tiết.";
         document.getElementById('animalConfidence').textContent = `${(data.confidence).toFixed(2)}` || "0.00%";
+
         const soundUrl = data.animal_info?.sound_url;
         if (soundUrl) {
-            const audioElement = document.getElementById('animalSound');
-            const audioSource = document.getElementById('animalSoundSource');
             audioSource.src = soundUrl; // Gán URL âm thanh
             audioElement.load(); // Tải lại âm thanh
-        
-            // Hiển thị biểu tượng loa
-            const soundIcon = document.getElementById('animalSoundIcon');
-            const soundIconImage = document.getElementById('soundIconImage');
-            soundIcon.style.display = 'block';
-        
-            // Trạng thái âm thanh
-            let isPlaying = false;
-        
+            soundIcon.style.display = 'block'; // Hiển thị biểu tượng loa
+
+            let isPlaying = false; // Đảm bảo loa mặc định là tắt
+
             // Khi nhấp vào biểu tượng loa, bật/tắt âm thanh
-            soundIcon.addEventListener('click', () => {
+            soundIcon.onclick = () => {
                 if (isPlaying) {
-                    audioElement.pause(); // Tạm dừng âm thanh
+                    audioElement.pause(); // Tắt âm thanh
                     soundIconImage.src = "https://res.cloudinary.com/dwfmpiozq/image/upload/v1732350144/loa_off_wvkrht.png";
                 } else {
                     audioElement.play(); // Phát âm thanh
                     soundIconImage.src = "https://res.cloudinary.com/dwfmpiozq/image/upload/v1732350142/loa_on_kvhq38.png";
                 }
-                isPlaying = !isPlaying; // Cập nhật trạng thái
-            });
-        
+                isPlaying = !isPlaying; // Đảo trạng thái
+            };
+
             // Khi âm thanh kết thúc, tự động chuyển biểu tượng về trạng thái tắt
-            audioElement.addEventListener('ended', () => {
+            audioElement.onended = () => {
                 soundIconImage.src = "https://res.cloudinary.com/dwfmpiozq/image/upload/v1732350144/loa_off_wvkrht.png";
                 isPlaying = false;
-            });
+            };
         } else {
-            document.getElementById('animalSoundIcon').style.display = 'none'; // Ẩn biểu tượng loa nếu không có âm thanh
+            soundPlaceholder.textContent = "Không có tiếng kêu của động vật này";
+            soundPlaceholder.style.display = 'block'; // Hiển thị thông báo nếu không có âm thanh
         }
-        
+
         document.getElementById('animalInfo').style.display = 'block';
     } catch (error) {
         console.error('Lỗi khi gửi yêu cầu:', error.message);
