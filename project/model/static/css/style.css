@@ -35,7 +35,7 @@
 
 .main-title {
     font-size: 1.8rem;
-    color: rgb(100 149 237);
+    color: rgb(210 237 103);
     text-align: center;
     margin-bottom: 15px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
@@ -45,7 +45,7 @@
     color: #ecf0f1;
     font-size: 1.1rem;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
 }
 
 .button-row {
@@ -67,24 +67,145 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/*--------------------------- nút chọn hình ảnh---------------------------  */
+
+/* Nút "Chọn hình ảnh" cơ bản */
 .file-label {
-    background: #2980b9;
-    color: #fff;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #ffffff; /* Chữ trắng */
+    background: #2980b9; /* Nền xanh */
+    border: 2px solid #2980b9; /* Viền cùng màu nền */
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    width: 150px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    z-index: 1;
 }
 
+/* Thêm chữ trong nút */
+.file-label span {
+    position: relative;
+    z-index: 2; /* Đảm bảo chữ luôn ở trên cùng */
+    transition: color 0.5s ease;
+}
+
+/* Hiệu ứng hover */
 .file-label:hover {
-    background: #3498db;
+    background: #bdc3c7; /* Nền xám nhạt */
+    border-color: #bdc3c7; /* Viền xám nhạt */
+    color: #ffffff; /* Chữ đen */
 }
 
-.submit-button {
-    background: #d5a328cc;
-    color: #fff;    
-    border: none;
+/* Hiệu ứng nền */
+.file-label::before,
+.file-label::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: transparent; /* Nền ban đầu trong suốt */
+    transition: all 0.5s ease;
+    z-index: 1;
 }
 
-.submit-button:hover {
-    background: #c6c327;
+.file-label::before {
+    left: -50%;
 }
+
+.file-label::after {
+    right: -50%;
+}
+
+/* Hover: làm nền xuất hiện */
+.file-label:hover::before {
+    left: 0;
+    background: #42474c; /* Nền xám sáng hơn */
+}
+
+.file-label:hover::after {
+    right: 0;
+    background: #42474c; /* Nền xám sáng hơn */
+}
+
+/*------------------------------------------------------------------------  */
+
+
+/*--------------------------- nút phân loại---------------------------  */
+
+button.submit-button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 30px; /* Điều chỉnh padding để kích thước nút phù hợp */
+    font-size: 1rem; /* Giảm kích thước chữ */
+    letter-spacing: normal; /* Bỏ khoảng cách giữa các chữ */
+    text-transform: none; /* Không viết hoa */
+    color: #fff;
+    background: #6a5acd; /* Nền màu tím */
+    border: 2px solid #6a5acd; /* Viền cùng màu nền */
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    text-decoration: none;
+    z-index: 1;
+    width: 150px; /* Đặt kích thước cố định để đồng đều */
+    text-align: center; /* Căn giữa chữ */
+    border-radius: 5px;
+    transition: all 0.5s ease; /* Hiệu ứng hover */
+}
+
+button.submit-button span {
+    position: relative;
+    z-index: 1;
+}
+
+button.submit-button::before,
+button.submit-button::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -75%);
+    background: rgba(20, 20, 20, 0.5);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+button.submit-button::before {
+    animation: liquid 5s linear infinite;
+    background: rgba(20, 20, 200, 0.5);
+}
+
+button.submit-button::after {
+    animation: liquid 10s linear infinite;
+    background: rgba(100, 100, 255, 0.2);
+}
+
+@keyframes liquid {
+    0% {
+        transform: translate(-50%, -75%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -75%) rotate(360deg);
+    }
+}
+
+/* Hover hiệu ứng */
+button.submit-button:hover {
+    background: #836fff; /* Màu tím sáng hơn khi hover */
+    border-color: #836fff;
+    color: #fff; /* Đảm bảo chữ luôn dễ nhìn */
+}
+
+
+/*--------------------------- ---------------------------  */
 
 .animal-info {
     background: rgba(255, 255, 255, 0.12);
@@ -99,12 +220,17 @@
 }
 
 .image-preview img {
-    max-width: 100%; /* Đảm bảo hình ảnh không vượt quá chiều rộng của cột */
-    height: auto; /* Tự động điều chỉnh chiều cao theo tỉ lệ */
-    border-radius: 8px;
-    margin-top: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 500px; /* Đặt chiều rộng tối đa */
+    max-height: 500px; /* Đặt chiều cao tối đa */
+    width: auto; /* Giữ tỉ lệ khung hình khi co dãn */
+    height: auto; /* Giữ tỉ lệ khung hình khi co dãn */
+    object-fit: contain; /* Đảm bảo ảnh nằm gọn trong khung */
+    border: 1px solid #ddd; /* Viền cho hình ảnh */
+    border-radius: 5px; /* Bo góc nhẹ */
+    padding: 5px;
+    justify-content: center;
 }
+
 
 #uploaded-image {
     display: flex;

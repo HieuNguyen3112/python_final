@@ -48,6 +48,20 @@ document.getElementById('classify-button').addEventListener('click', async funct
     loadingBar.style.display = 'block';
     animalInfo.style.display = 'none';
 
+    // Reset trạng thái loa và âm thanh
+    const soundIcon = document.getElementById('animalSoundIcon');
+    const soundIconImage = document.getElementById('soundIconImage');
+    const audioElement = document.getElementById('animalSound');
+    const audioSource = document.getElementById('animalSoundSource');
+    const soundPlaceholder = document.getElementById('animalSoundPlaceholder');
+
+    soundIcon.style.display = 'none'; // Ẩn biểu tượng loa
+    soundPlaceholder.style.display = 'none'; // Ẩn thông báo placeholder
+    soundIconImage.src = "https://res.cloudinary.com/dwfmpiozq/image/upload/v1732350144/loa_off_wvkrht.png"; // Đặt lại biểu tượng loa tắt
+    audioElement.pause(); // Tắt âm thanh nếu đang phát
+    audioElement.currentTime = 0; // Đặt lại âm thanh về thời điểm bắt đầu
+    audioSource.src = ""; // Xóa URL âm thanh
+
     const formData = new FormData();
     formData.append("file", file);
 
@@ -69,18 +83,54 @@ document.getElementById('classify-button').addEventListener('click', async funct
         const data = await response.json();
 
         // Hiển thị kết quả trong giao diện
-        document.getElementById('animalNameEng').textContent = data.animal_info?.Name_Eng || "Không rõ";
-        document.getElementById('animalNameVie').textContent = data.animal_info?.Name_Vie || "Không rõ";
-        document.getElementById('animalDescription').textContent = data.animal_info?.mo_ta || "Không có thông tin chi tiết.";
-        document.getElementById('animalConfidence').textContent = `${(data.confidence).toFixed(2)}` || "0.00%";
+        const animalNameEng = data.animal_info?.Name_Eng || "Không rõ";
+        const animalNameVie = data.animal_info?.Name_Vie || "Không rõ";
+        const animalDescription = data.animal_info?.mo_ta || "Không có thông tin chi tiết.";
+        const animalConfidence = `${(data.confidence).toFixed(2)}` || "0.00%";
 
-        animalInfo.style.display = 'block';
+        document.getElementById('animalNameEng').textContent = animalNameEng;
+        document.getElementById('animalNameVie').textContent = animalNameVie;
+        document.getElementById('animalDescription').textContent = animalDescription;
+        document.getElementById('animalConfidence').textContent = animalConfidence;
+
+        const soundUrl = data.animal_info?.sound_url;
+        if (soundUrl) {
+            audioSource.src = soundUrl; // Gán URL âm thanh
+            audioElement.load(); // Tải lại âm thanh
+            soundIcon.style.display = 'block'; // Hiển thị biểu tượng loa
+
+            let isPlaying = false; // Đảm bảo loa mặc định là tắt
+
+            // Khi nhấp vào biểu tượng loa, bật/tắt âm thanh
+            soundIcon.onclick = () => {
+                if (isPlaying) {
+                    audioElement.pause(); // Tắt âm thanh
+                    soundIconImage.src = "https://res.cloudinary.com/dwfmpiozq/image/upload/v1732350144/loa_off_wvkrht.png";
+                } else {
+                    audioElement.play(); // Phát âm thanh
+                    soundIconImage.src = "https://res.cloudinary.com/dwfmpiozq/image/upload/v1732350142/loa_on_kvhq38.png";
+                }
+                isPlaying = !isPlaying; // Đảo trạng thái
+            };
+
+            // Khi âm thanh kết thúc, tự động chuyển biểu tượng về trạng thái tắt
+            audioElement.onended = () => {
+                soundIconImage.src = "https://res.cloudinary.com/dwfmpiozq/image/upload/v1732350144/loa_off_wvkrht.png";
+                isPlaying = false;
+            };
+        } else {
+            soundPlaceholder.textContent = "Không có tiếng kêu của động vật này";
+            soundPlaceholder.style.display = 'block'; // Hiển thị thông báo nếu không có âm thanh
+        }
+
+        // Ẩn loading frame và hiển thị thông tin
+        setTimeout(() => {
+            loadingFrame.style.display = 'none';
+            loadingBar.style.display = 'none';
+            animalInfo.style.display = 'block';
+        }, 500);
     } catch (error) {
         console.error('Lỗi khi gửi yêu cầu:', error.message);
         alert(`Đã có lỗi xảy ra: ${error.message}`);
-    } finally {
-        // Ẩn loading frame
-        loadingFrame.style.display = 'none';
-        loadingBar.style.display = 'none';
     }
 });

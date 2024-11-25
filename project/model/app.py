@@ -88,7 +88,8 @@ def predict():
                 "animal_info": {
                     "Name_Eng": "Không tìm thấy",
                     "Name_Vie": "Không tìm thấy",
-                    "mo_ta": f"Không có thông tin chi tiết cho class_id {predicted_class + 1}"
+                    "mo_ta": f"Không có thông tin chi tiết cho class_id {predicted_class + 1}",
+                    "sound_url": None
                 }
             }), 404
 
