@@ -34,6 +34,9 @@ def preprocess_image(img_path):
 @app.route('/')
 def index():
     return render_template('mainPage.html')
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 @app.route('/upload')
 def upload():

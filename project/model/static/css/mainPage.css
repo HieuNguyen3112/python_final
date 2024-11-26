@@ -1114,3 +1114,66 @@ model-card {
     background-color: #f6c300;
     box-shadow: 0 0 5px #f6c300, 0 0 25px #f6c300, 0 0 50px #f6c300, 0 0 200px #f6c300;
 }
+
+
+
+/* General styles for introduction section */
+.introduction-container {
+    padding: 25px;
+    margin: 20px auto;
+    max-width: 900px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    backdrop-filter: blur(5px);
+}
+
+/* Title styling */
+.introduction-title {
+    font-size: 1.6rem; /* Giảm từ 2rem xuống 1.6rem */
+    font-weight: bold;
+    text-align: center;
+    color: #f5f5f5;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Paragraphs */
+.introduction-content p {
+    font-size: 0.95rem; /* Giảm từ 1.1rem xuống 0.95rem */
+    margin: 10px 0;
+    line-height: 1.6;
+    color: #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    text-align: justify;
+}
+
+/* Features and team members sections */
+.features, .team-members {
+    margin-top: 20px;
+}
+.features strong, .team-members strong {
+    font-size: 1.2rem; /* Giữ nguyên */
+    color: rgb(210 237 103);
+    margin-bottom: 10px;
+    display: block;
+    font-family: 'Poppins', sans-serif;
+}
+.features ul, .team-members ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+.features ul li, .team-members ul li {
+    font-size: 0.95rem; /* Giảm từ 1.1rem xuống 0.95rem */
+    margin: 5px 0;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.5; /* Điều chỉnh line-height giảm */
+}
+
+/* Add hover effect to list items */
+.features ul li:hover, .team-members ul li:hover {
+    color: #ffcc00;
+    transition: color 0.3s ease-in-out;
+}
